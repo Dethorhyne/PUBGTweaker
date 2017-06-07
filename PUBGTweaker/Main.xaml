@@ -1,0 +1,76 @@
+﻿<Window x:Class="PUBGTweaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PUBGTweaker"
+        mc:Ignorable="d"
+        Title="PU Battlegrounds Tweaker" Height="330" Width="720" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent">
+    <Border Margin="10">
+        <Border.Effect>
+            <DropShadowEffect x:Name="DSE"
+				Color="{Binding Path=(local:AppStyle.AccentMain)}"
+				Direction="270"
+				BlurRadius="5"
+				ShadowDepth="2" />
+        </Border.Effect>
+        <Grid Background="{Binding Path=(local:AppStyle.AccentBackground)}" x:Name="MainGrid">
+            <!--MouseDown="MainGrid_MouseDown"-->
+            <Grid Height="32" VerticalAlignment="Top" Panel.ZIndex="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="72"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel x:Name="titleBar"
+					Background="{Binding Path=(local:AppStyle.AccentMain)}" Width="628"
+					HorizontalAlignment="Left" Height="32" VerticalAlignment="Top">
+                    <TextBlock x:Name="TXT_AppTitle"
+						Padding="9,6"
+                        HorizontalAlignment="Left"
+						Text="PU Battlegrounds Tweaker"
+						Foreground="{Binding Path=(local:AppStyle.AccentText)}"
+						FontSize="18"
+						FontFamily="Times New Roman" 
+						IsHitTestVisible="False" Margin="0,0"/>
+                </DockPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="BTN_About" Width="36" Padding="5" Style="{StaticResource ResourceKey=HeaderBTN}" Content="?" Click="BTN_About_Click" ToolTip="Opens/Closes the About section"/>
+                    <Button x:Name="BTN_Close" Width="36" Padding="5" Style="{StaticResource ResourceKey=HeaderBTN}" Content="X" Click="BTN_Close_MouseUp" ToolTip="Closes the application"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,32,0,0" Panel.ZIndex="1" x:Name="AppContent">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="205" />
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.ColumnSpan="3" Content="Press a button to open the specified file in the editor window:" Style="{StaticResource ResourceKey=BTNLabel}" HorizontalAlignment="Left" />
+
+
+                    <Button x:Name="BTN_GUS" Grid.Row="1" Grid.Column="0" Tag="GameUserSettings" Style="{StaticResource ResourceKey=MainButtonStyle}" Click="BTN_Settings_Click" ToolTip="Opens the editor and loads GameUserSettings.ini on one side and suggested config tweaks on the other." />
+                    <Button x:Name="BTN_E" Grid.Row="1" Grid.Column="1" Tag="Engine" Style="{StaticResource ResourceKey=MainButtonStyle}" Click="BTN_Settings_Click" ToolTip="Opens the editor and loads Engine.ini on one side and suggested config tweaks on the other." />
+                    <Button x:Name="BTN_S" Grid.Row="1" Grid.Column="2" Tag="Scalability" Style="{StaticResource ResourceKey=MainButtonStyle}" Click="BTN_Settings_Click" ToolTip="Opens the editor and loads Scalability.ini on one side and suggested config tweaks on the other." />
+                    <Label Grid.Row="2" Grid.Column="0" Content="[GameUserSettings.ini]" Style="{StaticResource ResourceKey=BTNLabel}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="[Engine.ini]" Style="{StaticResource ResourceKey=BTNLabel}"/>
+                    <Label Grid.Row="2" Grid.Column="2" Content="[Scalability.ini]" Style="{StaticResource ResourceKey=BTNLabel}"/>
+                </Grid>
+            </Grid>
+            <Grid Margin="0,32,0,0" Panel.ZIndex="1" x:Name="AppAbout" Visibility="Hidden">
+                <Grid Background="#191919"><!--{Binding Path=(local:AppStyle.AccentMain)}-->
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Margin="5,5,5,0" FontSize="16" Foreground="#EFEFEF"><LineBreak/><Hyperlink ToolTip="PlayerUnknown's Battlegrounds website" Foreground="#FF70AFFF" Click="Hyperlink_Click" NavigateUri="https://www.playbattlegrounds.com/"><Run Text="PlayerUnknown's Battlegrounds"/></Hyperlink><Run Text=" Tweaker v"/><Run x:Name="APP_VersionNumber" Text="1.0"/><LineBreak/><LineBreak/><Run Text="Developer: "/><Hyperlink Click="Hyperlink_Click" Foreground="#FF70AFFF" ToolTip="My Twitter" NavigateUri="https://twitter.com/DethoRhyne"><Run Text="@Dethorhyne"/></Hyperlink><Run Text=" at ShardTools"/><LineBreak/><Run Text="Website: "/><Hyperlink ToolTip="Official website" Foreground="#FF70AFFF" Click="Hyperlink_Click" NavigateUri="http://www.shardtools.com/"><Run Text="http://www.shardtools.com"/></Hyperlink><LineBreak/><Run Text="PUBGT Tweaker Website: "/><Hyperlink ToolTip="PUBGT Tweaker Website" Foreground="#FF70AFFF" Click="Hyperlink_Click" NavigateUri="http://pubgt.shardtools.com/"><Run Text="http://pubgt.shardtools.com"/></Hyperlink><LineBreak/><LineBreak/><LineBreak/><Run Text="If you play DayZ "></Run><Run Text="check out "/><Hyperlink Foreground="#FF70AFFF" NavigateUri="http://dctt.shardtools.com/" Click="Hyperlink_Click" TextDecorations="Underline"><Run ToolTip="Application that lets you get the most out of DayZ" Text="DayZ Config Tweak Tool"/></Hyperlink><Run Text=" as well!"/></TextBlock>
+                    </WrapPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
